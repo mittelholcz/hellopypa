@@ -5,12 +5,12 @@
 Feltételezett könyvtárszerkezet:
 
 ```txt
-proba_package/
-    proba_modul/
+hellopypa/
+    hellopypa/
         __init__.py
-        proba.py
+        hellopypa.py
     test/
-        test_proba.py
+        test_hellopypa.py
     LICENCE.md
     MANIFEST.in
     README.md
