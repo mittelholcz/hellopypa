@@ -1,0 +1,2 @@
+# Tartalmazza a csomaghoz szükséges függőségeket.
+beautifulsoup4

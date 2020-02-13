@@ -1,0 +1,14 @@
+# Tartalmazza a fejlesztéshez és csomagoláshoz szükséges függőségeket.
+
+# Csomag saját függőségeinek importálása
+-r requirements.txt
+
+# Fejlesztés, tesztelés:
+autopep8
+pylint
+pytest
+
+# Csomagolás
+setuptools
+twine
+wheel
