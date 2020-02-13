@@ -40,21 +40,22 @@ A csomagoláshoz szükséges csomagok:
 - `twine`: Ezzel lehet a <pypi.org>-ra feltölteni az elkészült csomagot.
 - `wheel`: Ez kell a 2012-ben bevezetett *wheel* csomagformátumhoz (l. [PEP 427](https://www.python.org/dev/peps/pep-0427/)).
 
-## 2. Tesztelés
+## TODO
 
-TODO
-
-## 3. A `setup.py` fájl
-
-TODO
-
-## 4. A 'MANIFEST.in' fájl
-
-TODO
-
-## 5. Csomagolás, közzététel
-
-TODO
+- [x] Környezet
+- [ ] Tesztelés
+- [ ] Dokumentáció
+- [ ] Benchmark
+- [ ] A `setup.py` fájl
+- [ ] A 'MANIFEST.in' fájl
+- [ ] Verziózás
+- [ ] Csomagolás
+- [ ] Közzététel
+- [ ] Automatizálás
+- [ ] Telepítés
+  - [ ] lokálisan
+  - [ ] GH-ról
+  - [ ] pypi
 
 ## Irodalom
 
