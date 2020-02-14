@@ -1,8 +1,6 @@
 # Hogyan készítsünk python csomagot?
 
-## 1. Környezet
-
-Feltételezett könyvtárszerkezet:
+## 1. Könyvtárszerkezet
 
 ```txt
 hellopypa/
@@ -18,6 +16,16 @@ hellopypa/
     requirements-dev.txt
     setup.py
 ```
+
+Fontosabb könyvtárak és fájlok:
+
+- `hellopypa/`: a csomagunk fő könyvtára
+- `test/`: A csomaghoz való tesztek könyvtára. A tesztek nem részei a csomagnak, csak a repónak.
+- `MANIFEST.in`: Itt soroljuk fel a csomaghoz tartozó nem python fájlokat (binárisok, konfig fájlok, stb.)
+- `requirements*.txt`: Ezekben vannak felsorolva azok a python csomagok, amelyeket használunk (függőségek). A `requirements.txt` tartalmazza magának a csomagnak a függőségeit, a `requirements-dev.txt` pedig a fejlesztéshez szükséges függőségeket (tesztelés, linter, stb).
+- `setup.py`: Ez a fájl tartalmazza csomagoláshoz kellő metaadatokat.
+
+## 2. Környezet
 
 Hozzunk létre a csomagnak külön virtuális környezetet és aktiváljuk:
 
@@ -40,14 +48,24 @@ A csomagoláshoz szükséges csomagok:
 - `twine`: Ezzel lehet a <pypi.org>-ra feltölteni az elkészült csomagot.
 - `wheel`: Ez kell a 2012-ben bevezetett *wheel* csomagformátumhoz (l. [PEP 427](https://www.python.org/dev/peps/pep-0427/)).
 
+# 3. Tesztelés
+
+Mielőtt csomagolnánk, teszteljük le az alkalmazásunkat. A teszteléshez használjunk [pytest](https://docs.pytest.org/en/latest/)-et A `test/` könyvtárban vannak a test fájlok, ezeket a következő paranccsal futtathatjuk:
+
+```sh
+pytest --verbose test/
+```
+
+
 ## TODO
 
+- [x] Könyvtárszerkezet
 - [x] Környezet
 - [ ] Tesztelés
 - [ ] Dokumentáció
 - [ ] Benchmark
 - [ ] A `setup.py` fájl
-- [ ] A 'MANIFEST.in' fájl
+- [ ] A `MANIFEST.in` fájl
 - [ ] Verziózás
 - [ ] Csomagolás
 - [ ] Közzététel
