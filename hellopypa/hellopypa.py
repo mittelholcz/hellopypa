@@ -1,3 +1,3 @@
-def get_msg():
+def hello():
     msg = 'Hello pypa!'
     return msg

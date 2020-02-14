@@ -45,25 +45,26 @@ Megjegyzés: a `requirements-dev.txt` importálja sima `requirements.txt`-t is. 
 A csomagoláshoz szükséges csomagok:
 
 - `setuptools`: Ez a `setup.py` függősége.
-- `twine`: Ezzel lehet a <pypi.org>-ra feltölteni az elkészült csomagot.
+- `twine`: Ezzel lehet a [pypi.org](https://pypi.org/)-ra feltölteni az elkészült csomagot.
 - `wheel`: Ez kell a 2012-ben bevezetett *wheel* csomagformátumhoz (l. [PEP 427](https://www.python.org/dev/peps/pep-0427/)).
 
 # 3. Tesztelés
 
-Mielőtt csomagolnánk, teszteljük le az alkalmazásunkat. A teszteléshez használjunk [pytest](https://docs.pytest.org/en/latest/)-et A `test/` könyvtárban vannak a test fájlok, ezeket a következő paranccsal futtathatjuk:
+Mielőtt csomagolnánk, teszteljük le az alkalmazásunkat. A teszteléshez a [pytest](https://docs.pytest.org/en/latest/)-et használjunk. A `test/` könyvtárban vannak a tesztfájlok, ezeket a következő paranccsal futtathatjuk:
 
 ```sh
 pytest --verbose test/
 ```
 
+Megjegyzés: a `test/` könyvtár maga is csomag, kell benne lennie `__init__.py` fájlnak.
 
 ## TODO
 
+- Bevezetés: modul, csomag, pypi
 - [x] Könyvtárszerkezet
 - [x] Környezet
-- [ ] Tesztelés
+- [x] Tesztelés
 - [ ] Dokumentáció
-- [ ] Benchmark
 - [ ] A `setup.py` fájl
 - [ ] A `MANIFEST.in` fájl
 - [ ] Verziózás
