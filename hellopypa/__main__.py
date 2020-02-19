@@ -21,6 +21,10 @@ def get_args():
     return vars(args.parse_args())
 
 
-if __name__ == "__main__":
+def main():
     args = get_args()
     print(hello(**args))
+
+
+if __name__ == "__main__":
+    main()
