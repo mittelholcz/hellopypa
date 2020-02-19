@@ -157,6 +157,28 @@ setuptools.setup(
 # ...
 ```
 
+## 6. Fájlok hozzáadása
+
+A *setuptools* csak a python fájlokat veszi figyelembe. Ha más fájlokat is a csomaghoz szeretnénk adni (konfigurációs fájlokat, binárisokat, adatot), akkor két dolgot kell csinálnunk.
+
+1. Létre kell hoznunk egy *MANIFEST.in* fájlt, amiben felsoroljuk, hogy miket szeretnénk még a csomaghoz adni. Részletek [itt](https://packaging.python.org/guides/using-manifest-in/). Példa: adjuk a projekthez a *.cfg* kiterjesztésű fájlokat.
+
+    ```txt
+    include hellopypa/*.cfg
+    ```
+
+2. A *setup.py*-ba is bele kell írni, hogy további fájlok is lesznek.
+
+    ```py
+    # ...
+    setuptools.setup(
+        # ...
+        include_package_data=True,
+        # ...
+    )
+    # ...
+    ```
+
 ## TODO
 
 - [ ] Bevezetés: modul, csomag, pypi
@@ -165,7 +187,9 @@ setuptools.setup(
 - [x] Tesztelés
 - [ ] Dokumentáció
 - [x] A `setup.py` fájl
-- [ ] A `MANIFEST.in` fájl
+- [x] A `MANIFEST.in` fájl
+- [ ] `__main__.py`, CLI
+- [ ] `__init__.py`, API
 - [x] Verziózás
 - [x] Csomagolás
 - [x] Közzététel
@@ -173,6 +197,7 @@ setuptools.setup(
 - [x] Telepítés
   - [x] lokálisan
   - [x] pypi
+- [ ] make
 
 ## Irodalom
 
