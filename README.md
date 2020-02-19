@@ -167,13 +167,12 @@ setuptools.setup(
 - [x] A `setup.py` fájl
 - [ ] A `MANIFEST.in` fájl
 - [x] Verziózás
-- [ ] Csomagolás
-- [ ] Közzététel
+- [x] Csomagolás
+- [x] Közzététel
 - [ ] Automatizálás
-- [ ] Telepítés
-  - [ ] lokálisan
-  - [ ] GH-ról
-  - [ ] pypi
+- [x] Telepítés
+  - [x] lokálisan
+  - [x] pypi
 
 ## Irodalom
 
