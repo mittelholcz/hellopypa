@@ -1,11 +1,12 @@
 import setuptools
+from hellopypa.version import __version__
 
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name='hellopypa',
-    version='0.0.2',
+    version=__version__,
     author='mittelholcz',
     description='A sample Python package',
     long_description=long_description,

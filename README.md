@@ -69,22 +69,22 @@ Minta:
 ```py
 import setuptools
 
-with open("README.md", "r") as fh:
+with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="hellopypa",
-    version="0.0.1",
-    author="mittelholcz",
-    description="Get string 'hello pypa!'",
+    name='hellopypa',
+    version=__version__,
+    author='mittelholcz',
+    description='A sample Python package',
     long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/mittelholcz/hellopypa",
+    long_description_content_type='text/markdown',
+    url='https://github.com/mittelholcz/hellopypa',
     packages=setuptools.find_packages(exclude=['test']),
     classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: POSIX :: Linux",
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: POSIX :: Linux',
     ],
     python_requires='>=3.6',
 )
@@ -108,6 +108,20 @@ python3 setup.py sdist bdist_wheel
 
 paranccsal tudjuk futtatni. Ez létrehoz egy `dist/` könyvtárat a repo-n belül, amiben a csomagunk található.
 
+A csomag közvetlenül telepíthető a `pip install .` paranccal, vagy feltölthető a <pypi.org> oldalra a következő paranccsal:
+
+```sh
+python3 -m twine upload dist/*
+```
+
+Ezután bármelyik gépen telepíthető a csomag a `pip install hellopypa` paranccsal.
+
+## 5. Verzió
+
+A csomag verzióját érdemes egy helyen tárolni csak és máshol erről az egy helyről beolvasni valahogy. A lehetőségeket l. [itt](https://packaging.python.org/guides/single-sourcing-package-version/). Az itt használt megoldás lényege, hogy a csomagon belül egy külön fájlt használunk erre (`hellopypa/version.py`). Ezt a fájlt importáljuk a `setup.py`-ban és a `hellopypa/__init__.py`-ban is. Ezzel elkerülhetők a `hellopypa/__init__.py` közvetlen importálásának problémái, de telepítés nélkül is hozzáférhető lesz a verzió, mintha az `__init__.py`-ban lenne közvetlenül.
+
+
+
 ## TODO
 
 - [ ] Bevezetés: modul, csomag, pypi
@@ -117,7 +131,7 @@ paranccsal tudjuk futtatni. Ez létrehoz egy `dist/` könyvtárat a repo-n belü
 - [ ] Dokumentáció
 - [x] A `setup.py` fájl
 - [ ] A `MANIFEST.in` fájl
-- [ ] Verziózás
+- [x] Verziózás
 - [ ] Csomagolás
 - [ ] Közzététel
 - [ ] Automatizálás
