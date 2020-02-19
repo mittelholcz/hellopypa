@@ -108,7 +108,7 @@ python3 setup.py sdist bdist_wheel
 
 paranccsal tudjuk futtatni. Ez létrehoz egy `dist/` könyvtárat a repo-n belül, amiben a csomagunk található.
 
-A csomag közvetlenül telepíthető a `pip install .` paranccal, vagy feltölthető a <pypi.org> oldalra a következő paranccsal:
+A csomag közvetlenül telepíthető a `pip install .` paranccal, vagy regisztrációt követően feltölthető a pypi.org oldalra a következő paranccsal:
 
 ```sh
 python3 -m twine upload dist/*
@@ -116,11 +116,44 @@ python3 -m twine upload dist/*
 
 Ezután bármelyik gépen telepíthető a csomag a `pip install hellopypa` paranccsal.
 
+A pypi.org oldalnak van egy teszt változata is, ha csak kísérletezni szeretnénk, javasolt ezt használni. A fenti parancsok ekkor így módosulnak:
+
+```sh
+twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+pip install --index-url https://test.pypi.org/simple/ hellopypa
+```
+
 ## 5. Verzió
 
-A csomag verzióját érdemes egy helyen tárolni csak és máshol erről az egy helyről beolvasni valahogy. A lehetőségeket l. [itt](https://packaging.python.org/guides/single-sourcing-package-version/). Az itt használt megoldás lényege, hogy a csomagon belül egy külön fájlt használunk erre (`hellopypa/version.py`). Ezt a fájlt importáljuk a `setup.py`-ban és a `hellopypa/__init__.py`-ban is. Ezzel elkerülhetők a `hellopypa/__init__.py` közvetlen importálásának problémái, de telepítés nélkül is hozzáférhető lesz a verzió, mintha az `__init__.py`-ban lenne közvetlenül.
+A csomag verzióját érdemes egy helyen tárolni csak és máshol erről az egy helyről beolvasni valahogy. A lehetőségeket l. [itt](https://packaging.python.org/guides/single-sourcing-package-version/). Az itt használt megoldás lényege, hogy a csomagon belül egy külön fájlt használunk erre (`hellopypa/version.py`). Ezt a fájlt importáljuk a `setup.py`-ban és a `hellopypa/__init__.py`-ban is. Ezzel elkerülhetők a `hellopypa/__init__.py` közvetlen importálásának problémái (l. az előbbi cikk 6. pontjához írt figyelmeztetést), de telepítés nélkül is hozzáférhető lesz a verzió, mintha az `__init__.py`-ban lenne közvetlenül.
 
+`hellopypa/version.py`:
 
+```py
+__version__ = '0.0.3'
+```
+
+`hellopypa/__init__.py`:
+
+```py
+# ...
+from hellopypa.version import __version__
+# ...
+```
+
+`setup.py`:
+
+```py
+# ...
+from hellopypa.version import __version__
+# ...
+setuptools.setup(
+    # ...
+    version=__version__,
+    # ...
+)
+# ...
+```
 
 ## TODO
 
