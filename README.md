@@ -62,7 +62,7 @@ Megjegyzés: a `test/` könyvtár maga is csomag, kell benne lennie `__init__.py
 
 ## 4. A `setup.py` fájl
 
-Ez a fájl a build-szkript a [setuptools](https://setuptools.readthedocs.io/en/latest/) számára. A setuptools egy python csomag, ami a csomagolást végzi.
+Ez *build-szkript* a [*setuptools*](https://setuptools.readthedocs.io/en/latest/) számára. A *setuptools* hozza létre a könyvtárunkból a terjeszthető és *pip*-pel telepíthető formátumot.
 
 Minta:
 
@@ -74,7 +74,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='hellopypa',
-    version=__version__,
+    version='0.0.1',
     author='mittelholcz',
     description='A sample Python package',
     long_description=long_description,
@@ -89,6 +89,8 @@ setuptools.setup(
     python_requires='>=3.6',
 )
 ```
+
+A *setuptools.setup* fontosabb mezői:
 
 - `name`: A csomag neve (kötelező).
 - `verzion`: A csomag verziója (kötelező).
@@ -106,7 +108,7 @@ Ha `setup.py` fájlt a
 python3 setup.py sdist bdist_wheel
 ```
 
-paranccsal tudjuk futtatni. Ez létrehoz egy `dist/` könyvtárat a repo-n belül, amiben a csomagunk található.
+paranccsal tudjuk futtatni. A repónkban három új könyvtár fog létrejönni: egy `build/`, egy `dist/` és egy `hellopypa.egg-info/`. Ezek közül a `dist/` ami fontos, ebben található ugyanis a csomagunk terjeszthető és telepíthető változata.
 
 A csomag közvetlenül telepíthető a `pip install .` paranccal, vagy regisztrációt követően feltölthető a pypi.org oldalra a következő paranccsal:
 
