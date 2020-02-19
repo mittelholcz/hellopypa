@@ -179,6 +179,10 @@ A *setuptools* csak a python fájlokat veszi figyelembe. Ha más fájlokat is a 
     # ...
     ```
 
+## Parancssori futtatás
+
+valami
+
 ## TODO
 
 - [ ] Bevezetés: modul, csomag, pypi

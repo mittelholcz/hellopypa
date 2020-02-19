@@ -3,9 +3,12 @@
 # Csomag saját függőségeinek importálása
 -r requirements.txt
 
-# Fejlesztés, tesztelés:
+# Fejlesztés (vscode):
 autopep8
 pylint
+rope
+
+# Tesztelés
 pytest
 
 # Csomagolás
