@@ -115,7 +115,7 @@ paranccsal tudjuk futtatni. Ez létrehoz egy `dist/` könyvtárat a repo-n belü
 - [x] Környezet
 - [x] Tesztelés
 - [ ] Dokumentáció
-- [ ] A `setup.py` fájl
+- [x] A `setup.py` fájl
 - [ ] A `MANIFEST.in` fájl
 - [ ] Verziózás
 - [ ] Csomagolás
