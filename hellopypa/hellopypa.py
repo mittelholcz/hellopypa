@@ -2,13 +2,11 @@ from os.path import abspath, dirname, join
 from configparser import ConfigParser
 
 
-def hello(case=None):
-    here = dirname(abspath(__file__))
+def hello(upper=False):
+    mydir = dirname(abspath(__file__))
     config = ConfigParser()
-    config.read(join(here, 'example.cfg'))
+    config.read(join(mydir, 'example.cfg'))
     msg = config['DEFAULT']['msg']
-    if case == 'l':
-        msg = msg.lower()
-    elif case == 'u':
+    if upper:
         msg = msg.upper()
     return msg

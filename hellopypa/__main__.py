@@ -1,9 +1,11 @@
 """Print 'Hello pypa' to stdout.
 """
 
-from hellopypa import hello
-# from hellopypa.hellopypa import hello
 import argparse
+try:
+    from hellopypa.hellopypa import hello
+except ModuleNotFoundError:
+    from hellopypa import hello
 
 
 def get_args():
@@ -11,18 +13,19 @@ def get_args():
         description=__doc__,
         prog='hellopypa',
     )
-    help_case = 'casing (c: capitalize; l: lowercase; u: uppercase)'
+    help_upper = 'Uppercase'
     args.add_argument(
-        '-c',
-        '--case',
-        help=help_case,
-        choices=['c', 'l', 'u']
+        '-u',
+        '--upper',
+        help=help_upper,
+        action='store_true',
     )
     return vars(args.parse_args())
 
 
 def main():
     args = get_args()
+    print(args)
     print(hello(**args))
 
 
