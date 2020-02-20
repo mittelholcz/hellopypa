@@ -181,7 +181,24 @@ A *setuptools* csak a python fájlokat veszi figyelembe. Ha más fájlokat is a 
 
 ## Parancssori futtatás
 
-valami
+Ha csomagunkat a `pip install hellopypa` után nem csak importálva, de parancssori alkalmazásként is szeretnénk használni, akkor két dolgot tehetünk.
+
+1. Egy python csomag futtatható az `-m` kapcsolóval, pl. `python -m hellopypa`. Ehhez az kell, hogy a csomagban legyen egy `__main__.py` fájl, a python ezt fogja keresni és ha létezik, akkor futtatni. Részletek (nem mintha nagyon lennének) [itt](https://docs.python.org/3/library/__main__.html).
+2. Egy python csomag futtatható rendes, telepített parancsként is (`hellopypa`). Ekkor a *setup.py*-ban meg kell adni egy úgynevezett belépési pontot, konkrétan egy függvényt, amit meg fog hívni a python. Részletek [itt](https://setuptools.readthedocs.io/en/latest/pkg_resources.html#entry-points). Példa:
+
+    ```py
+    # ...
+    setuptools.setup(
+        # ...
+        entry_points={
+            "console_scripts": [
+                "hellopypa=hellopypa.__main__:main",
+            ]
+        },
+        # ...
+    )
+    # ...
+    ```
 
 ## TODO
 
@@ -192,7 +209,7 @@ valami
 - [ ] Dokumentáció
 - [x] A `setup.py` fájl
 - [x] A `MANIFEST.in` fájl
-- [ ] `__main__.py`, CLI
+- [x] `__main__.py`, CLI
 - [ ] `__init__.py`, API
 - [x] Verziózás
 - [x] Csomagolás
