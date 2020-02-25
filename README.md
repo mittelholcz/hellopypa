@@ -181,7 +181,9 @@ A *setuptools.setup* fontosabb mezői:
 - `description`: Rövid leírás.
 - `long_description`: Hosszú leírás, jellemzően magát a README.md-t szokták
   megadni. A PyPI ezt fogja a csomag oldalán megjeleníteni. Ha *markdown* fájlt
-  adunk meg, akkor meg kell adnunk a formátumot is.
+  adunk meg, akkor meg kell adnunk a formátumot is
+  ([*.rst*](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html)
+  az alapértelmezett).
 - `url`: A projekt honlapja.
 - `packages`: Itt adható meg, hol keresse a python fájlokat. Érdemes a
   *setuptools* `find_packages()` függvényére bízni a dolgot. Az `exclude=[dir1,
@@ -306,6 +308,7 @@ Megjegyzés: a `test/` könyvtár maga is csomag, kell benne lennie `__init__.py
 
 ## TODO
 
+- [ ] Tartalom
 - [x] Bevezetés: modul, csomag, pypi
 - [x] Könyvtárszerkezet
 - [x] Környezet
