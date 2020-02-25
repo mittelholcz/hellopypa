@@ -240,7 +240,7 @@ pip install --index-url https://test.pypi.org/simple/ hellopypa
 
 ## 7. További lehetőségek
 
-Sok további lehetőség van a terjeszthető csomag testreszabására.
+További tanácsok és lehetőségek a terjeszthető csomag testreszabására.
 
 ### 7.1. Verzió
 
