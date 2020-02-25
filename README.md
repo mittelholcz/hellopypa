@@ -211,7 +211,7 @@ regisztrációt követően feltölthető a pypi.org oldalra a következő paranc
 python3 -m twine upload dist/*
 ```
 
-Ezután bármelyik gépen telepíthető a csomag a `pip install hellopypa`
+Ezután bármelyik gépen telepíthető a csomag a `pip install csomagnév`
 paranccsal.
 
 A pypi.org oldalnak van egy teszt változata is, ha csak kísérletezni
