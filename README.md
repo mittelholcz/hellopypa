@@ -93,8 +93,8 @@ A csomagoláshoz az alábbi csomagok szükségesek:
 ## 4. Az `__init__.py`
 
 Az `__init__.py` lehet üres is, de ekkor is léteznie kell. Ha nem üres, akkor
-a csomag importálásánál a tartalma végrehajtódik. Szokás metaadatok és az API
-meghatározására használni.
+a csomag importálásánál a tartalma végrehajtódik. Szokás a metaadatok és az
+API meghatározására használni.
 
 *Metaadatok*: Kisebb projekteknél itt lehet felsorolni a csomag szerzőit,
 verzióját, licencét, megadni email-címet, karbantartót, hálát kifejezni a
@@ -102,13 +102,18 @@ hozzájárulóknak, stb. Részletek [itt](https://stackoverflow.com/a/1523456). 
 verziót érdemes külön fájlban tartani, l. alább a *Verzió* fejezetet.
 
 *API*: Alapesetben ha használni szeretnénk egy importált csomag egy függvényét,
-akkor azt így tudjuk hívni: `csomag.[alcsomag.]fájl.függvény()`. Ebből a
-`csomag` és a `függvény` elhagyhatatlan, de az `alcsomag` és a `fájl`
-általában felesleges. A felhasználónak csak azt kellene megjegyeznie, hogy melyik
-függvény melyik csomagban van, azt nem, hogy melyik csomag melyik
-fájljában van. Ráadásul a csomag írói is szeretik a kódot rugalmasan
-átszervezni a háttérben, pl. egy nagyra nőtt fájl egy részét egy új fájlba
-írni anélkül, hogy eltörnék az *API*-t.
+akkor azt így tudjuk hívni:
+
+```txt
+csomag.[alcsomag.]fájl.függvény()
+```
+
+Ebből a `csomag`-ot és a `függvény`-t nem lehet elhagyni, de az `alcsomag` és
+a `fájl` általában felesleges. A felhasználónak csak azt kellene
+megjegyeznie, hogy melyik függvény melyik csomagban van, azt nem, hogy melyik
+csomag melyik fájljában van. Ráadásul a csomag írói is szeretik a kódot
+rugalmasan átszervezni a háttérben, pl. egy nagyra nőtt fájl egy részét
+új fájlba írni anélkül, hogy eltörnék az *API*-t.
 
 Mivel az `__init__.py`-ban található kód importáláskor végrehajtódik,
 ezért érdemes itt importálni a publikusnak szánt függvényeket, osztályokat, ezzel a csomag importálásakor ezek az objektumok is közvetlenül használhatók lesznek. Példa:
@@ -130,25 +135,7 @@ mypackage.function1()
 import *`), akkor az alulvonással kezdődő objektumok nem kerülnek
 importálásra (a teljes elérési útjukon keresztül továbbra is elérhetőek
 lesznek, részletek
-[itt](https://dbader.org/blog/meaning-of-underscores-in-python)). Példa:
-
-```py
-# file1
-public_var = 10
-_private_var = 20
-```
-
-```py
-# mypackage/__init__.py
-from file1 import *
-```
-
-```py
-import mypackage
-print(mypackage.public_var) # OK
-print(mypackage._private_var) # NameError: "name '_public_var' is not defined"
-print(mypackage.file1._private_var) # OK
-```
+[itt](https://dbader.org/blog/meaning-of-underscores-in-python)).
 
 ## 5. A `setup.py` fájl
 
