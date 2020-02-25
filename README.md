@@ -61,9 +61,11 @@ Fontosabb könyvtárak és fájlok:
 
 ## 3. Környezet
 
-Hozzunk létre a csomagnak külön virtuális környezetet és aktiváljuk:
+Hozzunk létre a csomagnak külön virtuális környezetet és aktiváljuk
+(részletek [itt](https://docs.python.org/3/library/venv.html) és
+[itt](https://docs.python.org/3/tutorial/venv.html)):
 
-```sh
+```txt
 python3 -m venv .venv
 source .venv/bin/activate
 ```
@@ -118,7 +120,11 @@ import mypackage
 mypackage.function1()
 ```
 
-*Megjegyzés*: Ha az `__init__.py`-ban csillaggal importálunk (`from file import *`), akkor az alulvonással kezdődő objektumok nem kerülnek importálásra (a teljes elérési útjukon keresztül továbbra is elérhetőek lesznek). Példa:
+*Megjegyzés*: Ha az `__init__.py`-ban csillaggal importálunk (`from file
+import *`), akkor az alulvonással kezdődő objektumok nem kerülnek
+importálásra (a teljes elérési útjukon keresztül továbbra is elérhetőek
+lesznek, részletek
+[itt](https://dbader.org/blog/meaning-of-underscores-in-python)). Példa:
 
 ```py
 # file1
