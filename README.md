@@ -272,9 +272,14 @@ setuptools.setup(
 
 ### 7.2. Fájlok hozzáadása
 
-A *setuptools* csak a python fájlokat veszi figyelembe. Ha más fájlokat is a csomaghoz szeretnénk adni (konfigurációs fájlokat, binárisokat, adatot), akkor két dolgot kell csinálnunk.
+A *setuptools* csak a python fájlokat veszi figyelembe. Ha más fájlokat is a
+csomaghoz szeretnénk adni (konfigurációs fájlokat, binárisokat, adatot),
+akkor két dolgot kell csinálnunk.
 
-1. Létre kell hoznunk egy *MANIFEST.in* fájlt, amiben felsoroljuk, hogy miket szeretnénk még a csomaghoz adni. Részletek [itt](https://packaging.python.org/guides/using-manifest-in/). Példa: adjuk a projekthez a *.cfg* kiterjesztésű fájlokat.
+1. Létre kell hoznunk egy *MANIFEST.in* fájlt, amiben felsoroljuk, hogy miket
+szeretnénk még a csomaghoz adni. Részletek
+[itt](https://packaging.python.org/guides/using-manifest-in/). Példa: adjuk a
+projekthez a *.cfg* kiterjesztésű fájlokat.
 
     ```txt
     include hellopypa/*.cfg
@@ -289,7 +294,6 @@ A *setuptools* csak a python fájlokat veszi figyelembe. Ha más fájlokat is a 
         include_package_data=True,
         # ...
     )
-    # ...
     ```
 
 ### 7.3. Parancssori futtatás
