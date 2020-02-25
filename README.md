@@ -282,12 +282,14 @@ szeretnénk még a csomaghoz adni. Részletek
 projekthez a *.cfg* kiterjesztésű fájlokat.
 
     ```txt
+    # MANIFEST.in
     include hellopypa/*.cfg
     ```
 
 2. A *setup.py*-ba is bele kell írni, hogy további fájlok is lesznek.
 
     ```py
+    # setup.py
     # ...
     setuptools.setup(
         # ...
