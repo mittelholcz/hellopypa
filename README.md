@@ -139,9 +139,14 @@ lesznek, részletek
 
 ## 5. A `setup.py` fájl
 
-Ez *build-szkript* a [*setuptools*](https://setuptools.readthedocs.io/en/latest/) számára. A *setuptools* hozza létre a könyvtárunkból a terjeszthető és *pip*-pel telepíthető formátumot.
+Magát a csomagolást (a terjeszthető és telepíthető formátum létrehozását) a
+[*setuptools*](https://setuptools.readthedocs.io/en/latest/) nevű python
+csomag végzi. A `setup.py` fájl tartalmazza a *setuptools* számára szükséges
+adatokat. Az adatokat lehet közvetlenül a `setup.py`-ba is beírni, de néha
+hasznosabb máshol tárolni az adatot és a `setup.py`-ban csak importálni, vagy
+más módon beolvasni.
 
-Minta:
+Egy viszonylag minimalista példa:
 
 ```py
 import setuptools
@@ -150,13 +155,13 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='hellopypa',
+    name='csomagnév',
     version='0.0.1',
-    author='mittelholcz',
-    description='A sample Python package',
+    author='szerző',
+    description='Minimalista példa csomag',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/mittelholcz/hellopypa',
+    url='https://github.com/szerző/csomagnév',
     packages=setuptools.find_packages(exclude=['test']),
     classifiers=[
         'Programming Language :: Python :: 3',
@@ -170,10 +175,13 @@ setuptools.setup(
 A *setuptools.setup* fontosabb mezői:
 
 - `name`: A csomag neve (kötelező).
-- `verzion`: A csomag verziója (kötelező).
+- `verzion`: A csomag verziója (kötelező). A pypi.org-ra nem lehet kétszer
+  ugyanazt a verziószámú csomagot feltölteni, akkor sem, ha amúgy különböznek.
 - `author`: A csomag szerzője.
 - `description`: Rövid leírás.
-- `long_description`: Hosszú leírás, jellemzően magát a README.md-t szokták megadni. A PyPI ezt fogja a csomag oldalán megjeleníteni. Ha *markdown* fájlt adunk meg, akkor meg kell adnunk a formátumot is.
+- `long_description`: Hosszú leírás, jellemzően magát a README.md-t szokták
+  megadni. A PyPI ezt fogja a csomag oldalán megjeleníteni. Ha *markdown* fájlt
+  adunk meg, akkor meg kell adnunk a formátumot is.
 - `url`: A projekt honlapja.
 - `packages`: Itt adható meg, hol keresse a python fájlokat. Érdemes a *setuptools* `find_packages()` függvényére bízni a dolgot. Az `exclude=[dir1, dir2, ...]` paraméternek megadott könyvtárakban nem fog keresni.
 - `classifiers`: A PyPI számára megadható címkék listája [itt](https://pypi.org/classifiers/).
