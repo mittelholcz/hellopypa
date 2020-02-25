@@ -70,19 +70,25 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-Telepítsük a csomaghoz (`requirements.txt`) és a csomagoláshoz (`requirements-dev.txt`) szükséges függőségeket:
+Telepítsük a csomaghoz (`requirements.txt`) valamint a csomagoláshoz és
+fejlesztéshez szükséges függőségeket (`requirements-dev.txt`):
 
 ```sh
 pip install -r requirements-dev.txt
 ```
 
-Megjegyzés: a `requirements-dev.txt` importálja sima `requirements.txt`-t is. A `requirements.txt` fájlok leírását l. [itt](https://pip.pypa.io/en/stable/reference/pip_install/#requirements-file-format) és [itt](https://pip.pypa.io/en/stable/user_guide/#requirements-files).
+*Megjegyzés*: A `requirements-dev.txt` importálja sima `requirements.txt`-t is.
+A `requirements.txt` fájlok leírását l.
+[itt](https://pip.pypa.io/en/stable/reference/pip_install/#requirements-file-format)
+és [itt](https://pip.pypa.io/en/stable/user_guide/#requirements-files).
 
-A csomagoláshoz szükséges csomagok:
+A csomagoláshoz az alábbi csomagok szükségesek:
 
 - `setuptools`: Ez a `setup.py` függősége.
-- `twine`: Ezzel lehet a [pypi.org](https://pypi.org/)-ra feltölteni az elkészült csomagot.
-- `wheel`: Ez kell a 2012-ben bevezetett *wheel* csomagformátumhoz (l. [PEP 427](https://www.python.org/dev/peps/pep-0427/)).
+- `twine`: Ezzel lehet a [pypi.org](https://pypi.org/)-ra feltölteni az
+  elkészült csomagot.
+- `wheel`: Ez kell a 2012-ben bevezetett *wheel* csomagformátumhoz (l. [PEP
+  427](https://www.python.org/dev/peps/pep-0427/)).
 
 ## 4. Az `__init__.py`
 
