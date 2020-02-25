@@ -244,25 +244,22 @@ Sok további lehetőség van a terjeszthető csomag testreszabására.
 
 ### 7.1. Verzió
 
-A csomag verzióját érdemes egy helyen tárolni csak és máshol erről az egy helyről beolvasni valahogy. A lehetőségeket l. [itt](https://packaging.python.org/guides/single-sourcing-package-version/). Az itt használt megoldás lényege, hogy a csomagon belül egy külön fájlt használunk erre (`hellopypa/version.py`). Ezt a fájlt importáljuk a `setup.py`-ban és a `hellopypa/__init__.py`-ban is. Ezzel elkerülhetők a `hellopypa/__init__.py` közvetlen importálásának problémái (l. az előbbi cikk 6. pontjához írt figyelmeztetést), de telepítés nélkül is hozzáférhető lesz a verzió, mintha az `__init__.py`-ban lenne közvetlenül.
-
-`hellopypa/version.py`:
+A csomag verzióját érdemes egy helyen tárolni csak és máshol csak innen beolvasni. A lehetőségeket l. [itt](https://packaging.python.org/guides/single-sourcing-package-version/). Az alábbi megoldás lényege, hogy a csomagon belül egy külön fájlt használunk erre (`hellopypa/version.py`). Ezt a fájlt importáljuk a `setup.py`-ban és a `hellopypa/__init__.py`-ban is. Ezzel elkerülhetők a `hellopypa/__init__.py` közvetlen importálásának problémái (l. az előbbi cikk 6. pontjához írt figyelmeztetést), de telepítés nélkül is hozzáférhető lesz a verzió, mintha az `__init__.py`-ban lenne közvetlenül.
 
 ```py
+# hellopypa/version.py
 __version__ = '0.0.3'
 ```
 
-`hellopypa/__init__.py`:
-
 ```py
+# hellopypa/__init__.py
 # ...
 from hellopypa.version import __version__
 # ...
 ```
 
-`setup.py`:
-
 ```py
+# setup.py
 # ...
 from hellopypa.version import __version__
 # ...
@@ -271,7 +268,6 @@ setuptools.setup(
     version=__version__,
     # ...
 )
-# ...
 ```
 
 ### 7.2. Fájlok hozzáadása
