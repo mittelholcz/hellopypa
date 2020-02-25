@@ -300,12 +300,22 @@ projekthez a *.cfg* kiterjesztésű fájlokat.
 
 ### 7.3. Parancssori futtatás
 
-Ha csomagunkat a `pip install hellopypa` után nem csak importálva, de parancssori alkalmazásként is szeretnénk használni, akkor két dolgot tehetünk.
+Ha csomagunkat a `pip install hellopypa` után nem csak importálva, de
+parancssori alkalmazásként is szeretnénk használni, akkor két dolgot
+tehetünk.
 
-1. Egy python csomag futtatható az `-m` kapcsolóval, pl. `python -m hellopypa`. Ehhez az kell, hogy a csomagban legyen egy `__main__.py` fájl, a python ezt fogja keresni és ha létezik, akkor futtatni. Részletek (nem mintha nagyon lennének) [itt](https://docs.python.org/3/library/__main__.html).
-2. Egy python csomag futtatható rendes, telepített parancsként is (`hellopypa`). Ekkor a *setup.py*-ban meg kell adni egy úgynevezett belépési pontot, konkrétan egy függvényt, amit meg fog hívni a python. Részletek [itt](https://setuptools.readthedocs.io/en/latest/pkg_resources.html#entry-points). Példa:
+1. Egy python csomag futtatható az `-m` kapcsolóval (pl. `# python -m
+hellopypa`). Ehhez az kell, hogy a csomagban legyen egy `__main__.py` fájl, a
+python ezt fogja keresni és ha létezik, akkor futtatni. Részletek (nem mintha
+nagyon lennének) [itt](https://docs.python.org/3/library/__main__.html).
+2. Egy python csomag futtatható rendes, telepített parancsként is (pl.
+`# hellopypa`). Ekkor a *setup.py*-ban meg kell adni egy úgynevezett belépési
+pontot, konkrétan egy függvényt, amit meg fog hívni a python. Részletek
+[itt](https://setuptools.readthedocs.io/en/latest/pkg_resources.html#entry-points).
+Példa:
 
     ```py
+    # setup.py
     # ...
     setuptools.setup(
         # ...
@@ -316,7 +326,6 @@ Ha csomagunkat a `pip install hellopypa` után nem csak importálva, de parancss
         },
         # ...
     )
-    # ...
     ```
 
 ## TODO
