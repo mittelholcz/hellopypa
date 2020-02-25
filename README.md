@@ -1,15 +1,43 @@
-# Hogyan készítsünk python csomagot?
+# Hogyan készítsünk python csomagot
 
-## 1. Könyvtárszerkezet
+## 1. Bevezetés
+
+A *modul* (*module*) egy python fájl, ami importálható, névteret alkot és tetszőleges további python objektumokat tartalmazhat.
+
+A *csomag* (*package*) egy olyan könyvtár, ami tartalmaz egy `__init__.py`
+fájlt, továbbá tartalmazhat további alcsomagokat (alkönyvtárakat) és
+modulokat (python fájlokat). A *csomag* is importálható, névteret alkot és
+további python objektumokat tartalmazhat.
+
+*Megjegyzés*: A *modul~fájl* és a *csomag~könyvtár* csak analógia, nem minden
+esetben igaz. Részletek [itt](https://docs.python.org/3/reference/import.html).
+
+A csomagokat a Python csomagkezelőjével, a
+[`pip`](https://pip.pypa.io/en/stable/)-pel lehet telepíteni, frissíteni,
+eltávolítani. A `pip` képes verziókezelő repozitóriumokból is telepíteni, így
+pl. a Github-ról is, de a python csomagok publikálásának szokott módja a
+csomag feltöltése a [pypi.org](https://pypi.org/)-ra (*PyPI*: Python Package
+Index). Ennek mikéntjéről lesz szó az alábbiakban.
+
+A [pypi.org](https://pypi.org/)-ot és a csomagoláshoz szükséges eszközöket a
+*PyPA* (*Python Packaging Authority*) fejleszti és tartja karban. Honlapjukon
+([pypa.io](https://www.pypa.io/en/latest/)) sok hasznos anyag elérhető
+csomagolás és terjesztés témakörben.
+
+## 2. Könyvtárszerkezet
 
 ```txt
 hellopypa/
     hellopypa/
         __init__.py
+        __main__.py
+        example.cfg
         hellopypa.py
+        version.py
     test/
-        test_hellopypa.py
-    LICENSE.md
+        __init__.py
+        test_hello.py
+    LICENSE
     MANIFEST.in
     README.md
     requirements.txt
@@ -19,15 +47,19 @@ hellopypa/
 
 Fontosabb könyvtárak és fájlok:
 
-- `hellopypa/`: a csomagunk fő könyvtára
-- `test/`: A csomaghoz való tesztek könyvtára. A tesztek nem részei a csomagnak, csak a repónak.
-- `LICENSE`: Licenc, a lehetőségeket l. [itt](https://choosealicense.com/).
+- `hellopypa/`: A csomagunk fő könyvtára. Általában jó, ha ez megegyezik
+  magának a repónak a nevével (külső `hellopypa/` könyvtár), de nem szükséges.
+- `test/`: A csomaghoz való tesztek könyvtára. A tesztek nem részei a
+  csomagnak, csak a repónak.
+- `LICENSE`: Licenc, a lehetőségeket l. [itt](https://choosealicense.com/) és
+  [itt](https://opensource.org/licenses), további tanácsok
+  [itt](https://arstechnica.com/gadgets/2020/02/how-to-choose-an-open-source-license/).
 - `MANIFEST.in`: Itt soroljuk fel a csomaghoz tartozó nem python fájlokat (binárisok, konfig fájlok, stb).
 - `README.md`: Readme fájl, röviden leírja, hogy mire jó a csomag, hogyan kell telepíteni és hogyan lehet futtatni. A *markdown* formátumról bővebben [itt](https://guides.github.com/features/mastering-markdown/), a tartalmáról [itt](https://dbader.org/blog/write-a-great-readme-for-your-github-project) lehet olvasni.
 - `requirements*.txt`: Ezekben vannak felsorolva azok a python csomagok, amelyeket használunk (függőségek). A `requirements.txt` tartalmazza magának a csomagnak a függőségeit, a `requirements-dev.txt` pedig a fejlesztéshez szükséges függőségeket (tesztelés, linter, stb).
 - `setup.py`: Ez a fájl tartalmazza csomagoláshoz kellő metaadatokat.
 
-## 2. Környezet
+## 3. Környezet
 
 Hozzunk létre a csomagnak külön virtuális környezetet és aktiváljuk:
 
@@ -50,17 +82,63 @@ A csomagoláshoz szükséges csomagok:
 - `twine`: Ezzel lehet a [pypi.org](https://pypi.org/)-ra feltölteni az elkészült csomagot.
 - `wheel`: Ez kell a 2012-ben bevezetett *wheel* csomagformátumhoz (l. [PEP 427](https://www.python.org/dev/peps/pep-0427/)).
 
-## 3. Tesztelés
+## 4. Az `__init__.py`
 
-Mielőtt csomagolnánk, teszteljük le az alkalmazásunkat. A teszteléshez a [pytest](https://docs.pytest.org/en/latest/)-et használjunk. A `test/` könyvtárban vannak a tesztfájlok, ezeket a következő paranccsal futtathatjuk:
+Az `__init__.py` lehet üres is, de ekkor is léteznie kell. Ha nem üres, akkor
+a csomag importálásánál a tartalma végrehajtódik. Szokás metaadatok és az API
+meghatározására használni.
 
-```sh
-pytest --verbose test/
+*Metaadatok*: Kisebb projekteknél itt lehet felsorolni a csomag szerzőit,
+verzióját, licencét, megadni email-címet, karbantartót, hálát kifejezni a
+hozzájárulóknak, stb. Részletek [itt](https://stackoverflow.com/a/1523456). A
+verziót érdemes külön fájlban tartani, l. alább a *Verzió* fejezetet.
+
+*API*: Alapesetben ha használni szeretnénk egy importált csomag egy függvényét,
+akkor azt így tudjuk hívni: `csomag.[alcsomag.]fájl.függvény()`. Ebből a
+`csomag` és a `függvény` elhagyhatatlan, de az `alcsomag` és a `fájl`
+általában felesleges. A felhasználónak csak azt kellene megjegyeznie, hogy melyik
+függvény melyik csomagban van, azt nem, hogy melyik csomag melyik
+fájljában van. Ráadásul a csomag írói is szeretik a kódot rugalmasan
+átszervezni a háttérben, pl. egy nagyra nőtt fájl egy részét egy új fájlba
+írni anélkül, hogy eltörnék az *API*-t.
+
+Mivel az `__init__.py`-ban található kód importáláskor végrehajtódik,
+ezért érdemes itt importálni a publikusnak szánt függvényeket, osztályokat, ezzel a csomag importálásakor ezek az objektumok is közvetlenül használhatók lesznek. Példa:
+
+```py
+# mypackage/__init__.py
+from file1 import function1, function2
+from file2 import function3
 ```
 
-Megjegyzés: a `test/` könyvtár maga is csomag, kell benne lennie `__init__.py` fájlnak.
+Ezután a használat egyszerű:
 
-## 4. A `setup.py` fájl
+```py
+import mypackage
+mypackage.function1()
+```
+
+*Megjegyzés*: Ha az `__init__.py`-ban csillaggal importálunk (`from file import *`), akkor az alulvonással kezdődő objektumok nem kerülnek importálásra (a teljes elérési útjukon keresztül továbbra is elérhetőek lesznek). Példa:
+
+```py
+# file1
+public_var = 10
+_private_var = 20
+```
+
+```py
+# mypackage/__init__.py
+from file1 import *
+```
+
+```py
+import mypackage
+print(mypackage.public_var) # OK
+print(mypackage._private_var) # NameError: "name '_public_var' is not defined"
+print(mypackage.file1._private_var) # OK
+```
+
+## 5. A `setup.py` fájl
 
 Ez *build-szkript* a [*setuptools*](https://setuptools.readthedocs.io/en/latest/) számára. A *setuptools* hozza létre a könyvtárunkból a terjeszthető és *pip*-pel telepíthető formátumot.
 
@@ -98,7 +176,7 @@ A *setuptools.setup* fontosabb mezői:
 - `description`: Rövid leírás.
 - `long_description`: Hosszú leírás, jellemzően magát a README.md-t szokták megadni. A PyPI ezt fogja a csomag oldalán megjeleníteni. Ha *markdown* fájlt adunk meg, akkor meg kell adnunk a formátumot is.
 - `url`: A projekt honlapja.
-- `packages`: Itt adható meg, hol keresse a python fájlokat. Érdemes a *setuptools* `find_packages()` függvényére bizni a dolgot. Az `exclude=[dir1, dir2, ...]` paraméternek megadott könyvtárakban nem fog keresni.
+- `packages`: Itt adható meg, hol keresse a python fájlokat. Érdemes a *setuptools* `find_packages()` függvényére bízni a dolgot. Az `exclude=[dir1, dir2, ...]` paraméternek megadott könyvtárakban nem fog keresni.
 - `classifiers`: A PyPI számára megadható címkék listája [itt](https://pypi.org/classifiers/).
 - `python_requires`: Megadható a minimum python verzió.
 
@@ -125,7 +203,9 @@ twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 pip install --index-url https://test.pypi.org/simple/ hellopypa
 ```
 
-## 5. Verzió
+## 6. További lehetőségek
+
+### 6.1. Verzió
 
 A csomag verzióját érdemes egy helyen tárolni csak és máshol erről az egy helyről beolvasni valahogy. A lehetőségeket l. [itt](https://packaging.python.org/guides/single-sourcing-package-version/). Az itt használt megoldás lényege, hogy a csomagon belül egy külön fájlt használunk erre (`hellopypa/version.py`). Ezt a fájlt importáljuk a `setup.py`-ban és a `hellopypa/__init__.py`-ban is. Ezzel elkerülhetők a `hellopypa/__init__.py` közvetlen importálásának problémái (l. az előbbi cikk 6. pontjához írt figyelmeztetést), de telepítés nélkül is hozzáférhető lesz a verzió, mintha az `__init__.py`-ban lenne közvetlenül.
 
@@ -157,7 +237,7 @@ setuptools.setup(
 # ...
 ```
 
-## 6. Fájlok hozzáadása
+### 6.2. Fájlok hozzáadása
 
 A *setuptools* csak a python fájlokat veszi figyelembe. Ha más fájlokat is a csomaghoz szeretnénk adni (konfigurációs fájlokat, binárisokat, adatot), akkor két dolgot kell csinálnunk.
 
@@ -179,7 +259,7 @@ A *setuptools* csak a python fájlokat veszi figyelembe. Ha más fájlokat is a 
     # ...
     ```
 
-## Parancssori futtatás
+### 6.3. Parancssori futtatás
 
 Ha csomagunkat a `pip install hellopypa` után nem csak importálva, de parancssori alkalmazásként is szeretnénk használni, akkor két dolgot tehetünk.
 
@@ -200,9 +280,19 @@ Ha csomagunkat a `pip install hellopypa` után nem csak importálva, de parancss
     # ...
     ```
 
+## 4. Tesztelés
+
+Mielőtt csomagolnánk, teszteljük le az alkalmazásunkat. A teszteléshez a [pytest](https://docs.pytest.org/en/latest/)-et használjunk. A `test/` könyvtárban vannak a tesztfájlok, ezeket a következő paranccsal futtathatjuk:
+
+```sh
+pytest --verbose test/
+```
+
+Megjegyzés: a `test/` könyvtár maga is csomag, kell benne lennie `__init__.py` fájlnak.
+
 ## TODO
 
-- [ ] Bevezetés: modul, csomag, pypi
+- [x] Bevezetés: modul, csomag, pypi
 - [x] Könyvtárszerkezet
 - [x] Környezet
 - [x] Tesztelés
@@ -210,7 +300,7 @@ Ha csomagunkat a `pip install hellopypa` után nem csak importálva, de parancss
 - [x] A `setup.py` fájl
 - [x] A `MANIFEST.in` fájl
 - [x] `__main__.py`, CLI
-- [ ] `__init__.py`, API
+- [x] `__init__.py`, API
 - [x] Verziózás
 - [x] Csomagolás
 - [x] Közzététel
