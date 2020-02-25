@@ -105,7 +105,7 @@ verziót érdemes külön fájlban tartani, l. alább a *Verzió* fejezetet.
 akkor azt így tudjuk hívni:
 
 ```txt
-csomag.[alcsomag.]fájl.függvény()
+csomag[.alcsomag].fájl.függvény()
 ```
 
 Ebből a `csomag`-ot és a `függvény`-t nem lehet elhagyni, de az `alcsomag` és
@@ -183,27 +183,34 @@ A *setuptools.setup* fontosabb mezői:
   megadni. A PyPI ezt fogja a csomag oldalán megjeleníteni. Ha *markdown* fájlt
   adunk meg, akkor meg kell adnunk a formátumot is.
 - `url`: A projekt honlapja.
-- `packages`: Itt adható meg, hol keresse a python fájlokat. Érdemes a *setuptools* `find_packages()` függvényére bízni a dolgot. Az `exclude=[dir1, dir2, ...]` paraméternek megadott könyvtárakban nem fog keresni.
+- `packages`: Itt adható meg, hol keresse a python fájlokat. Érdemes a
+  *setuptools* `find_packages()` függvényére bízni a dolgot. Az `exclude=[dir1,
+  dir2, ...]` paraméternek megadott könyvtárakban nem fog keresni.
 - `classifiers`: A PyPI számára megadható címkék listája [itt](https://pypi.org/classifiers/).
 - `python_requires`: Megadható a minimum python verzió.
 
-Ha `setup.py` fájlt a
+Futtassuk a `setup.py` fájlt:
 
 ```sh
 python3 setup.py sdist bdist_wheel
 ```
 
-paranccsal tudjuk futtatni. A repónkban három új könyvtár fog létrejönni: egy `build/`, egy `dist/` és egy `hellopypa.egg-info/`. Ezek közül a `dist/` ami fontos, ebben található ugyanis a csomagunk terjeszthető és telepíthető változata.
+A repónkban három új könyvtár fog létrejönni: egy `build/`, egy `dist/` és
+egy `csomagnév.egg-info/`. Ezek közül a `dist/` ami fontos, ebben található
+ugyanis a csomagunk terjeszthető és telepíthető változata.
 
-A csomag közvetlenül telepíthető a `pip install .` paranccal, vagy regisztrációt követően feltölthető a pypi.org oldalra a következő paranccsal:
+A csomag közvetlenül telepíthető a `pip install .` paranccal, vagy
+regisztrációt követően feltölthető a pypi.org oldalra a következő paranccsal:
 
 ```sh
 python3 -m twine upload dist/*
 ```
 
-Ezután bármelyik gépen telepíthető a csomag a `pip install hellopypa` paranccsal.
+Ezután bármelyik gépen telepíthető a csomag a `pip install hellopypa`
+paranccsal.
 
-A pypi.org oldalnak van egy teszt változata is, ha csak kísérletezni szeretnénk, javasolt ezt használni. A fenti parancsok ekkor így módosulnak:
+A pypi.org oldalnak van egy teszt változata is, ha csak kísérletezni
+szeretnénk, javasolt ezt használni. A fenti parancsok ekkor így módosulnak:
 
 ```sh
 twine upload --repository-url https://test.pypi.org/legacy/ dist/*
