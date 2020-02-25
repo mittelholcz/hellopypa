@@ -3,6 +3,11 @@
 # Csomag saját függőségeinek importálása
 -r requirements.txt
 
+# Csomagolás
+setuptools
+twine
+wheel
+
 # Fejlesztés (vscode):
 autopep8
 pylint
@@ -10,8 +15,3 @@ rope
 
 # Tesztelés
 pytest
-
-# Csomagolás
-setuptools
-twine
-wheel
