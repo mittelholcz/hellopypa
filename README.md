@@ -137,7 +137,23 @@ importálásra (a teljes elérési útjukon keresztül továbbra is elérhetőek
 lesznek, részletek
 [itt](https://dbader.org/blog/meaning-of-underscores-in-python)).
 
-## 5. A `setup.py` fájl
+## 5. Tesztelés
+
+Mielőtt csomagolnánk, teszteljük le az alkalmazásunkat. A teszteléshez
+használhatjuk a hagyományos
+[*unittest*](https://docs.python.org/3/library/unittest.html)-et, vagy az
+újabban elterjedt [*pytest*](https://docs.pytest.org/en/latest/)-et. A
+`test/` könyvtárban vannak a tesztfájlok, ezeket *pytest* estén a következő
+paranccsal futtathatjuk:
+
+```sh
+pytest --verbose test/
+```
+
+*Megjegyzés*: a `test/` könyvtár maga is csomag, kell benne lennie
+`__init__.py` fájlnak.
+
+## 6. A `setup.py` fájl
 
 Magát a csomagolást (a terjeszthető és telepíthető formátum létrehozását) a
 [*setuptools*](https://setuptools.readthedocs.io/en/latest/) nevű python
@@ -222,9 +238,11 @@ twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 pip install --index-url https://test.pypi.org/simple/ hellopypa
 ```
 
-## 6. További lehetőségek
+## 7. További lehetőségek
 
-### 6.1. Verzió
+Sok további lehetőség van a terjeszthető csomag testreszabására.
+
+### 7.1. Verzió
 
 A csomag verzióját érdemes egy helyen tárolni csak és máshol erről az egy helyről beolvasni valahogy. A lehetőségeket l. [itt](https://packaging.python.org/guides/single-sourcing-package-version/). Az itt használt megoldás lényege, hogy a csomagon belül egy külön fájlt használunk erre (`hellopypa/version.py`). Ezt a fájlt importáljuk a `setup.py`-ban és a `hellopypa/__init__.py`-ban is. Ezzel elkerülhetők a `hellopypa/__init__.py` közvetlen importálásának problémái (l. az előbbi cikk 6. pontjához írt figyelmeztetést), de telepítés nélkül is hozzáférhető lesz a verzió, mintha az `__init__.py`-ban lenne közvetlenül.
 
@@ -256,7 +274,7 @@ setuptools.setup(
 # ...
 ```
 
-### 6.2. Fájlok hozzáadása
+### 7.2. Fájlok hozzáadása
 
 A *setuptools* csak a python fájlokat veszi figyelembe. Ha más fájlokat is a csomaghoz szeretnénk adni (konfigurációs fájlokat, binárisokat, adatot), akkor két dolgot kell csinálnunk.
 
@@ -278,7 +296,7 @@ A *setuptools* csak a python fájlokat veszi figyelembe. Ha más fájlokat is a 
     # ...
     ```
 
-### 6.3. Parancssori futtatás
+### 7.3. Parancssori futtatás
 
 Ha csomagunkat a `pip install hellopypa` után nem csak importálva, de parancssori alkalmazásként is szeretnénk használni, akkor két dolgot tehetünk.
 
@@ -298,16 +316,6 @@ Ha csomagunkat a `pip install hellopypa` után nem csak importálva, de parancss
     )
     # ...
     ```
-
-## 4. Tesztelés
-
-Mielőtt csomagolnánk, teszteljük le az alkalmazásunkat. A teszteléshez a [pytest](https://docs.pytest.org/en/latest/)-et használjunk. A `test/` könyvtárban vannak a tesztfájlok, ezeket a következő paranccsal futtathatjuk:
-
-```sh
-pytest --verbose test/
-```
-
-Megjegyzés: a `test/` könyvtár maga is csomag, kell benne lennie `__init__.py` fájlnak.
 
 ## TODO
 
@@ -329,6 +337,8 @@ Megjegyzés: a `test/` könyvtár maga is csomag, kell benne lennie `__init__.py
   - [x] lokálisan
   - [x] pypi
 - [ ] make
+- [ ] függőség buildelése a setup.py használatával???
+- [ ] függőség letöltése telepítéskor???
 
 ## Irodalom
 
