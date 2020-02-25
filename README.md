@@ -198,8 +198,11 @@ python3 setup.py sdist bdist_wheel
 ```
 
 A repónkban három új könyvtár fog létrejönni: egy `build/`, egy `dist/` és
-egy `csomagnév.egg-info/`. Ezek közül a `dist/` ami fontos, ebben található
-ugyanis a csomagunk terjeszthető és telepíthető változata.
+egy `csomagnév.egg-info/` (érdemes ezeket a `.gitignore` fájlba felvenni,
+vagy a GitHub python-hoz írt `.gitignore`
+[fájlját](https://github.com/github/gitignore/blob/master/Python.gitignore)
+használni). Ezek közül a `dist/` ami fontos, ebben található ugyanis a
+csomagunk terjeszthető és telepíthető változata.
 
 A csomag közvetlenül telepíthető a `pip install .` paranccal, vagy
 regisztrációt követően feltölthető a pypi.org oldalra a következő paranccsal:
