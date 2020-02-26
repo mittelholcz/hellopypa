@@ -82,9 +82,9 @@ __release:
 	@sed -i -r "s/pypi-$(OLDVER)/pypi-$(NEWVER)/" README.md
 	@sed -i -r "s/__version__ = '$(OLDVER)'/__version__ = '$(NEWVER)'/" hellopypa/version.py
 	@make -s build
-	# @git add README.md hellopypa/version.py
-	# @git commit -m'new release'
-	# @git tag -a $(NEWVER) -m'release: $(NEWVER)'
-	# git push origin $(NEWVER)
-	# pipenv run python3 -m twine upload dist/*
+	@git add README.md hellopypa/version.py
+	@git commit -m'new release'
+	@git tag -a $(NEWVER) -m'release: $(NEWVER)'
+	git push origin $(NEWVER)
+	. .venv/bin/activate ; python3 -m twine upload dist/*
 .PHONY: __release
