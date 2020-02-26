@@ -80,7 +80,7 @@ __release:
 		fi
 	@echo "NEW VERSION: $(NEWVER)"
 	@sed -i -r "s/pypi-$(OLDVER)/pypi-$(NEWVER)/" README.md
-	@sed -i -r "s/__version__ = '$(OLDVER)'/version = '$(NEWVER)'/" hellopypa/version.py
+	@sed -i -r "s/__version__ = '$(OLDVER)'/__version__ = '$(NEWVER)'/" hellopypa/version.py
 	# @make -s build
 	# @git add README.md hellopypa/version.py
 	# @git commit -m'new release'
