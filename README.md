@@ -344,6 +344,27 @@ Példa:
     )
     ```
 
+## 8. Make
+
+*Átmeneti megoldás, amíg nincs rendes automatizálás.*
+
+`make clean`: A build-elés során keletkezett könyvtárak törlése (`buld/`,
+`dist/`, `*.egg-info/`).
+
+`make test`: Tesztek futtatása.
+
+`make build`: Build-elés.
+
+`make release_major`: *Major* verziószám váltás, új release a GitHub-on és a
+PyPI-n.
+
+`make release_minor`: *Minor* verziószám váltás, új release a GitHub-on és a
+PyPI-n.
+
+`make release_patch`: *Patch* verziószám váltás, új release a GitHub-on és a
+PyPI-n.
+
+
 ## TODO
 
 - [x] Tartalom
