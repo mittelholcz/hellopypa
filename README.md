@@ -1,5 +1,18 @@
 # Hogyan készítsünk python csomagot
 
+- [1. Bevezetés](#1-bevezetés)
+- [2. Könyvtárszerkezet](#2-könyvtárszerkezet)
+- [3. Környezet](#3-környezet)
+- [4. Az `__init__.py` fájl](#4-az-__init__py-fájl)
+- [5. Tesztelés](#5-tesztelés)
+- [6. A `setup.py` fájl](#6-a-setuppy-fájl)
+- [7. További lehetőségek](#7-további-lehetőségek)
+  - [7.1. Verzió](#71-verzió)
+  - [7.2. Fájlok hozzáadása](#72-fájlok-hozzáadása)
+  - [7.3. Parancssori futtatás](#73-parancssori-futtatás)
+- [TODO](#todo)
+- [Irodalom](#irodalom
+
 ## 1. Bevezetés
 
 A *modul* (*module*) egy python fájl, ami importálható, névteret alkot és tetszőleges további python objektumokat tartalmazhat.
@@ -90,7 +103,7 @@ A csomagoláshoz az alábbi csomagok szükségesek:
 - `wheel`: Ez kell a 2012-ben bevezetett *wheel* csomagformátumhoz (l. [PEP
   427](https://www.python.org/dev/peps/pep-0427/)).
 
-## 4. Az `__init__.py`
+## 4. Az `__init__.py` fájl
 
 Az `__init__.py` lehet üres is, de ekkor is léteznie kell. Ha nem üres, akkor
 a csomag importálásánál a tartalma végrehajtódik. Szokás a metaadatok és az
