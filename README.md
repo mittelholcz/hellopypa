@@ -1,3 +1,6 @@
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mittelholcz/hellopypa/blob/master/LICENSE)
+[![pypi](https://img.shields.io/badge/pypi-0.7.0-blue.svg)](https://pypi.org/project/hellopypa/)
+
 # Hogyan készítsünk python csomagot
 
 - [1. Bevezetés](#1-bevezetés)
@@ -360,7 +363,7 @@ Példa:
 - [x] Telepítés
   - [x] lokálisan
   - [x] pypi
-- [ ] make
+- [x] make
 - [ ] függőség buildelése a setup.py használatával???
 - [ ] függőség letöltése telepítéskor???
 
