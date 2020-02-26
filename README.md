@@ -1,5 +1,5 @@
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mittelholcz/hellopypa/blob/master/LICENSE)
-[![pypi](https://img.shields.io/badge/pypi-0.0.9-blue.svg)](https://pypi.org/project/hellopypa/)
+[![pypi](https://img.shields.io/badge/pypi-0.0.10-blue.svg)](https://pypi.org/project/hellopypa/)
 
 # Hogyan készítsünk python csomagot
 
