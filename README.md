@@ -11,7 +11,7 @@
   - [7.2. Fájlok hozzáadása](#72-fájlok-hozzáadása)
   - [7.3. Parancssori futtatás](#73-parancssori-futtatás)
 - [TODO](#todo)
-- [Irodalom](#irodalom
+- [Irodalom](#irodalom)
 
 ## 1. Bevezetés
 
@@ -343,7 +343,7 @@ Példa:
 
 ## TODO
 
-- [ ] Tartalom
+- [x] Tartalom
 - [x] Bevezetés: modul, csomag, pypi
 - [x] Könyvtárszerkezet
 - [x] Környezet
