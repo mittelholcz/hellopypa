@@ -353,6 +353,7 @@ Példa:
 
 ## Irodalom
 
-- gyorstalpaló: <https://packaging.python.org/tutorials/packaging-projects/>
-- sok részletes útmutató egyes témakörökhöz: <https://packaging.python.org/guides/>
-- *Real Python* [tutorial](<https://realpython.com/pypi-publish-python-package/>)
+- PyPA gyorstalpalója: <https://packaging.python.org/tutorials/packaging-projects/>
+- PyPA útmutatói egyes témákhoz: <https://packaging.python.org/guides/>
+- *Real Python* tutorial: <https://realpython.com/pypi-publish-python-package/>
+- *setuptools* dokumentáció: <https://setuptools.readthedocs.io/en/latest/>
