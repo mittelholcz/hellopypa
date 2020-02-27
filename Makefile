@@ -14,13 +14,14 @@ all:
 env:
 	if "$$(which deactivate)" ] ; then \
 		deactivate ; \
-		rm -rf .venv/ ; \
-		python3 -m venv .venv ; \
-		. .venv/bin/activate ; \
-		pip install -r requirements-dev.txt ; \
 	else \
 		echo -n ; \
-	fi
+	fi ; \
+	rm -rf .venv/ ; \
+	python3 -m venv .venv ; \
+	. .venv/bin/activate ; \
+	pip install -r requirements-dev.txt ; \
+
 .PHONY: env
 
 
