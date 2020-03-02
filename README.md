@@ -207,7 +207,7 @@ setuptools.setup(
 A *setuptools.setup* fontosabb mezői:
 
 - `name`: A csomag neve (kötelező).
-- `verzion`: A csomag verziója (kötelező). A pypi.org-ra nem lehet kétszer
+- `version`: A csomag verziója (kötelező). A pypi.org-ra nem lehet kétszer
   ugyanazt a verziószámú csomagot feltölteni, akkor sem, ha amúgy különböznek.
 - `author`: A csomag szerzője.
 - `description`: Rövid leírás.
