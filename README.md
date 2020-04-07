@@ -237,7 +237,7 @@ vagy a GitHub python-hoz írt `.gitignore`
 használni). Ezek közül a `dist/` ami fontos, ebben található ugyanis a
 csomagunk terjeszthető és telepíthető változata.
 
-A csomag közvetlenül telepíthető a `pip install .` paranccal, vagy
+A csomag közvetlenül telepíthető a `pip install .` paranccsal, vagy
 regisztrációt követően feltölthető a pypi.org oldalra a következő paranccsal:
 
 ```sh
