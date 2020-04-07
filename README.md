@@ -183,7 +183,7 @@ Egy viszonylag minimalista példa:
 ```py
 import setuptools
 
-with open('README.md', 'r') as fh:
+with open('README.md') as fh:
     long_description = fh.read()
 
 setuptools.setup(
@@ -217,7 +217,8 @@ A *setuptools.setup* fontosabb mezői:
   ([*.rst*](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html)
   az alapértelmezett).
 - `url`: A projekt honlapja.
-- `packages`: Itt adható meg, hol keresse a python fájlokat. Érdemes a
+- `packages`: Itt lehet megadni a csomag kódját tartalmazó könyvtárak listáját.
+  Ezekben fogja kereseni a python fájlokat. Nagyobb projekteknél érdemes a
   *setuptools* `find_packages()` függvényére bízni a dolgot. Az `exclude=[dir1,
   dir2, ...]` paraméternek megadott könyvtárakban nem fog keresni.
 - `classifiers`: A PyPI számára megadható címkék listája [itt](https://pypi.org/classifiers/).
